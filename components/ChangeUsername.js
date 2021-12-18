@@ -1,29 +1,35 @@
-import { useMoralis } from "react-moralis"
+import { useState } from "react";
+import { useMoralis } from "react-moralis";
+import Popup from "./Popup";
 
-function ChangeUsername() {
-    const { setUserData, isUserupdating, userError, user } = useMoralis();
+function ChangeUserName() {
+  const { setUserData, isUserUpdating, userError, user } = useMoralis();
+  const [isOpen, setIsOpen] = useState(false);
 
-    const setUsername = () =>{
-        const username=prompt(`Enter your new Username (current: ${user.getUsername()} )`)
+  const setUsername = () => {
 
-        if (!username) return;
+    if (!username) return;
+    setUserData({ username });
+  };
 
-    setUserData({
-        username,
-    });
-    };
-
-    
-
-   
-    return (
-        <div className="text-sm absolute top-5 right-5" >
-            <button disabled={isUserupdating} onClick={setUsername} 
-            className="hover:text-blue-500 border-500 rounded-full p-2 outline-blue-500 outline-double ">
-                Change your username
-            </button>
-        </div>
-    )
+  return (
+    <div className="text-sm absolute top-5 right-5">
+      <button
+        disabled={isUserUpdating}
+        onClick={() => setIsOpen(true)}
+        className="hover:text-blue-500 border-500 rounded-full p-2 outline-blue-500 outline-double "
+      >
+        Change your Username
+      </button  >
+      <Popup open={isOpen} onClose={() => setIsOpen(false)} />
+    </div>
+  );
 }
 
-export default ChangeUsername
+export default ChangeUserName;
+
+
+
+
+
+
