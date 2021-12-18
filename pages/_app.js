@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import { MoralisProvider } from "react-moralis";
 
+import "./background.css";
+
 function MyApp({ Component, pageProps }) {
   return (
     <MoralisProvider
@@ -9,6 +11,7 @@ function MyApp({ Component, pageProps }) {
     >
       <Component {...pageProps} />
     </MoralisProvider>
+    
   );
 }
 
